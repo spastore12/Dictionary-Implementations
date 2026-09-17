@@ -15,7 +15,21 @@ class Dictionary:
 
 
     #### To complete
+    def __init__(self, filename):
+        self.__words = []
 
+        try:
+            file = open(filename, "r")          #opens file in read mode (if file is found)
+        except FileNotFoundError:
+            print(f"File {filename} does not exist!")
+            sys.exit(0)
+
+        print(f"Load {filename}")
+
+        for line in file:
+            self.__words.append(line.strip())    #adds each word to the empty list
+
+        file.close()
 
 
     
