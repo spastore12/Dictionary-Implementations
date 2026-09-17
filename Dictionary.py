@@ -17,6 +17,8 @@ class Dictionary:
     #### To complete
     def __init__(self, filename):
         self.__words = []
+        self.__name = filename[:-4]    #stores the file name without ".txt"
+        random.seed(8)                 #same random sequence every time the program runs
 
         try:
             file = open(filename, "r")          #opens file in read mode (if file is found)
@@ -31,7 +33,19 @@ class Dictionary:
 
         file.close()
 
+    def get_name(self):
+        return self.__name
 
+    def get_size(self):
+        return len(self.__words)
+
+    def get_random_list(self, n):
+        random_words = []
+
+        for i in range(n):
+            random_words.append(self.__words[random.randint(0, self.get_size() - 1)])
+
+        return random_words
     
     def selection_sort(self):    #provided to you
         """Perfom selection sort, must return the time it takes to sort the list of words
@@ -95,42 +109,42 @@ def main():
     for w in rlist: print(w,end=" ")
     print("\n")
 
-    ### step-3 test constructor again
-    dict2=Dictionary()
-    print('Name extracted dictionary:',dict2.get_name())
+    # ### step-3 test constructor again
+    # dict2=Dictionary()
+    # print('Name extracted dictionary:',dict2.get_name())
     
-    ### step-4 test insert and display
-    for w in rlist: dict2.insert(w)
-    print('Display extracted dictionary:')
-    dict2.display()
+    # ### step-4 test insert and display
+    # for w in rlist: dict2.insert(w)
+    # print('Display extracted dictionary:')
+    # dict2.display()
 
-    ### step-5 test shuffle 
-    t=dict2.shuffle()
-    print('\nExtracted dictionary shuffled in %ss:'%t)
-    print('Display extracted dictionary:')
-    dict2.display()
+    # ### step-5 test shuffle 
+    # t=dict2.shuffle()
+    # print('\nExtracted dictionary shuffled in %ss:'%t)
+    # print('Display extracted dictionary:')
+    # dict2.display()
 
-    ### step-6 test linear search
-    word="morning"
-    print("\nLinear search for the word '%s' in extracted dictionary"%word)
-    status=dict2.lsearch(word)
-    print("Is '%s' found: %s at index %s"%(word,status,dict2.get_index()))
+    # ### step-6 test linear search
+    # word="morning"
+    # print("\nLinear search for the word '%s' in extracted dictionary"%word)
+    # status=dict2.lsearch(word)
+    # print("Is '%s' found: %s at index %s"%(word,status,dict2.get_index()))
 
-    ### step-7 sort extracted using selection sort (provided to you)
-    t=dict2.selection_sort()
-    print('\nExtracted dictionary sorted in %ss:'%t)
-    print('Display extracted dictionary:')
-    dict2.display()
+    # ### step-7 sort extracted using selection sort (provided to you)
+    # t=dict2.selection_sort()
+    # print('\nExtracted dictionary sorted in %ss:'%t)
+    # print('Display extracted dictionary:')
+    # dict2.display()
 
-    ### step-8 test binary search (find it)
-    words=["morning","night"]
-    for word in words:
-        print("\nBinary search for the word '%s' in extracted dictionary"%word)
-        status=dict2.bsearch(word) # binary search
-        if (status):  # found it!!
-            print("Is '%s' found: %s at index %s"%(word,status,dict2.get_index()))
-        else:          # Nope did not find it
-            print("'%s' is not found so it must be inserted at index %s"%(word,dict2.get_index()))
+    # ### step-8 test binary search (find it)
+    # words=["morning","night"]
+    # for word in words:
+    #     print("\nBinary search for the word '%s' in extracted dictionary"%word)
+    #     status=dict2.bsearch(word) # binary search
+    #     if (status):  # found it!!
+    #         print("Is '%s' found: %s at index %s"%(word,status,dict2.get_index()))
+    #     else:          # Nope did not find it
+    #         print("'%s' is not found so it must be inserted at index %s"%(word,dict2.get_index()))
     
 
 
