@@ -1,4 +1,4 @@
-# Your names:
+# Your names: Simone Pastore and Bryan Hamerski
 #
 #
 #
