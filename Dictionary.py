@@ -15,23 +15,26 @@ class Dictionary:
 
 
     #### To complete
-    def __init__(self, filename):
+    def __init__(self, filename =None):           #allows filename to have a default value if no filename is found
         self.__words = []
-        self.__name = filename[:-4]    #stores the file name without ".txt"
         random.seed(8)                 #same random sequence every time the program runs
+        if filename is None:
+            self.__name = "N/A"         #defualt name if there is no filename
+        else:
+            self.__name = filename[:-4]    #stores the file name without ".txt"
 
-        try:
-            file = open(filename, "r")          #opens file in read mode (if file is found)
-        except FileNotFoundError:
-            print(f"File {filename} does not exist!")
-            sys.exit(0)
+            try:
+                file = open(filename, "r")          #opens file in read mode (if file is found)
+            except FileNotFoundError:
+                print(f"File {filename} does not exist!")
+                sys.exit(0)
 
-        print(f"Load {filename}")
+            print(f"Load {filename}")
 
-        for line in file:
-            self.__words.append(line.strip())    #adds each word to the empty list
+            for line in file:
+                self.__words.append(line.strip())    #adds each word to the empty list
 
-        file.close()
+            file.close()
 
     def get_name(self):
         return self.__name
