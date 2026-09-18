@@ -42,6 +42,13 @@ class Dictionary:
     def get_size(self):
         return len(self.__words)
 
+    def insert(self, word):            #appends a new word into the word list
+        self.__words.append(word)
+
+    def display(self):                 #iterates through the unsorted list of words and prints them each on their own line
+        for word in self.__words:
+            print(word)
+
     def get_random_list(self, n):
         random_words = []
 
