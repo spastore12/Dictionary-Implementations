@@ -119,14 +119,14 @@ def main():
     for w in rlist: print(w,end=" ")
     print("\n")
 
-    # ### step-3 test constructor again
-    # dict2=Dictionary()
-    # print('Name extracted dictionary:',dict2.get_name())
+    ### step-3 test constructor again
+    dict2=Dictionary()
+    print('Name extracted dictionary:',dict2.get_name())
     
-    # ### step-4 test insert and display
-    # for w in rlist: dict2.insert(w)
-    # print('Display extracted dictionary:')
-    # dict2.display()
+    ### step-4 test insert and display
+    for w in rlist: dict2.insert(w)
+    print('Display extracted dictionary:')
+    dict2.display()
 
     # ### step-5 test shuffle 
     # t=dict2.shuffle()
