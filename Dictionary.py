@@ -1,4 +1,4 @@
-# Your names: Simone Pastore 35049968 and Bryan Hamerski *enter ucard num*
+# Your names: Simone Pastore 35049968 and Bryan Hamerski 35082532
 #
 #
 #
