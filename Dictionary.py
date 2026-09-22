@@ -115,6 +115,18 @@ class Dictionary:
         self.__index = lower
         return False
 
+    def insertion_sort(self):
+        t1 = time.process_time()
+        n = len(self.__words)
+        for out in range(1,n):        # outer loop
+            temp = self.__words[out]  # save the word being inserted 
+            i = out
+            while i > 0 and self.__words[i-1]>temp:
+                self.__words[i] = self.__words[i-1]   # shift key
+                i = i-1
+            self.__words[i] = temp    # insertion
+        t2 = time.process_time()
+        return t2 - t1
 
     
     @staticmethod  # provided to you
