@@ -155,8 +155,8 @@ class Dictionary:
         return t2 - t1
 
     def save(self, filename):
-        new_file = self.__name + "_sorted.txt"     #creates new variable name for sorted file
-        file = open(new_file, "w")
+       
+        file = open(filename, "w")
         for word in self.__words:                  #loops through words and adds them to new file
             file.write(word + "\n")
         file.close()
