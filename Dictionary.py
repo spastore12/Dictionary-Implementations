@@ -20,7 +20,7 @@ class Dictionary:
         self.__index = -1   # stores the index found by a search; -1 means "not found"
         random.seed(8)                 #same random sequence every time the program runs
         if filename is None:
-            self.__name = "N/A"         #defualt name if there is no filename
+            self.__name = "N/A"         #default name if there is no filename
         else:
             self.__name = filename[:-4]    #stores the file name without ".txt"
 
