@@ -154,7 +154,7 @@ class Dictionary:
         t2 = time.process_time()
         return t2 - t1
 
-    def save(self):
+    def save(self, filename):
         new_file = self.__name + "_sorted.txt"     #creates new variable name for sorted file
         file = open(new_file, "w")
         for word in self.__words:                  #loops through words and adds them to new file
