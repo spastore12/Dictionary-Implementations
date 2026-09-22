@@ -128,6 +128,32 @@ class Dictionary:
         t2 = time.process_time()
         return t2 - t1
 
+    def enhanced_insertion_sort(self):
+        t1 = time.process_time()
+        n = len(self.__words)
+        for out in range(1,n):
+            temp = self.__words[out]
+
+            # binary search to find the insertion position
+            lower = 0
+            upper = out - 1
+            while lower <= upper:
+                mid = lower + (upper-lower)//2
+                if self.__words[mid] < temp:
+                    lower = mid + 1
+                else:
+                    upper = mid - 1
+
+            # shift larger words one position to the right
+            i = out
+            while i > lower:
+                self.__words[i] = self.__words[i - 1]
+                i = i - 1
+            self.__words[lower] = temp   # insert word into correct position
+            
+        t2 = time.process_time()
+        return t2 - t1
+
     
     @staticmethod  # provided to you
     def get_word_combination(word, combs=['']):
