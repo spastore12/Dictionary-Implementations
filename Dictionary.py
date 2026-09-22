@@ -160,6 +160,7 @@ class Dictionary:
         for word in self.__words:                  #loops through words and adds them to new file
             file.write(word + "\n")
         file.close()
+        print(f"Save {filename}")
 
     
     @staticmethod  # provided to you
