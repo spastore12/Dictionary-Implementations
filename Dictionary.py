@@ -102,11 +102,13 @@ class Dictionary:
         return False
 
     def bsearch(self, word):
+        self.__steps = 0
         lower = 0
         upper = self.get_size() - 1
 
         while lower <= upper:
             mid = lower + (upper-lower)//2
+            self.__steps += 1
 
             if self.__words[mid] == word:
                 self.__index = mid
