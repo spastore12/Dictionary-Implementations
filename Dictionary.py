@@ -18,6 +18,7 @@ class Dictionary:
     def __init__(self, filename = None):    # filename=None allows filename to have a default value if no filename is found
         self.__words = []
         self.__index = -1   # stores the index found by a search; -1 means "not found"
+        self.__steps = 0
         random.seed(8)                 #same random sequence every time the program runs
         if filename is None:
             self.__name = "N/A"         #default name if there is no filename
@@ -42,6 +43,9 @@ class Dictionary:
 
     def get_size(self):
         return len(self.__words)
+
+    def get_steps(self):
+        return self.__steps
 
     def insert(self, word):            #appends a new word into the word list
         self.__words.append(word)
