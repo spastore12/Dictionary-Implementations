@@ -168,6 +168,33 @@ class Dictionary:
         file.close()
         print(f"Save {filename}")
 
+    def spell_check(self, filename):
+        try:
+            file = open(filename, "r")   # open the text file in read mode
+        except FileNotFoundError:
+            print(f"File {filename} does not exist!")
+            return
+
+        punc = "’!()-[]{};:'\",<>./?@#$%^&*_~"   # punctuation to remove from word edges
+
+        for line in file:                     # read the file one line at a time
+            for word in line.split():         # split each line into individual words
+
+                # Create cleaned lowercase version for dictionary searching
+                clean_word = word.lower()
+                clean_word = clean_word.lstrip(punc)
+                clean_word = clean_word.rstrip(punc)
+
+                status = self.bsearch(clean_word)   # binary search requires sorted dictionary
+
+                if status:
+                    print(word, end=" ")            # found: print original word normally
+                else:
+                    print("(" + word + ")", end=" ")   # not found: flag original word
+
+            print()   # move to next output line after finishing this input line
+
+        file.close()
     
     @staticmethod  # provided to you
     def get_word_combination(word, combs=['']):
