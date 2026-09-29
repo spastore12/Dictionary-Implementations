@@ -196,8 +196,34 @@ class Dictionary:
 
         file.close()
 
+
+    def anagram(self, word):
+        anagram_list = []                   #creates empty anagram list
+        word = self.sort_word(word)          #sorts inputted word
+        
+        for dictionary_word in self.__words:
+            if len(dictionary_word) == len(word):              #checks dictionary for words of same length as inputted word
+                if self.sort_word(dictionary_word) == word:               #checks if sorted word in dictionary = sorted inputted word
+                    anagram_list.append(dictionary_word)                     #appends to anagram list if previosu comments are true.
+
+        return anagram_list
+                    
+                
+    
+    
+    @staticmethod  # provided to you
+    def get_word_combination(word, combs=['']):
+        """ return a list that contains all the letter combinations (all length) of the input 'word' """
+        if len(word) == 0:
+            return combs
+        head, tail = word[0], word[1:]
+        combs = combs + list(map(lambda x: x+head, combs))
+        return Dictionary.get_word_combination(tail, combs)
+
+    
+
     @staticmethod
-    def selection_sort_word(word):       #selection sort algorithm for anagrams
+    def sort_word(word):                 #selection sort algorithm for anagrams
         letters = list(word)
 
         n = len(letters)
@@ -219,22 +245,6 @@ class Dictionary:
             sorted_word += letter
 
         return sorted_word         # returns sorted word in quotations, ex.) "dabc" --> "abcd"
-    
-    @staticmethod  # provided to you
-    def get_word_combination(word, combs=['']):
-        """ return a list that contains all the letter combinations (all length) of the input 'word' """
-        if len(word) == 0:
-            return combs
-        head, tail = word[0], word[1:]
-        combs = combs + list(map(lambda x: x+head, combs))
-        return Dictionary.get_word_combination(tail, combs)
-
-    
-
-    @staticmethod
-    def sort_word(word):  # to complete
-        """ must return a string with letters included in 'word' that are now sorted"""
-        pass # to remove
 
 
 
