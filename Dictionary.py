@@ -195,6 +195,30 @@ class Dictionary:
             print()   # move to next output line after finishing this input line
 
         file.close()
+
+    @staticmethod
+    def selection_sort_word(word):       #selection sort algorithm for anagrams
+        letters = list(word)
+
+        n = len(letters)
+
+        for out in range(n - 1):
+            imin = out
+
+            for i in range(out + 1, n):
+                if letters[i] < letters[imin]:
+                    imin = i
+
+            temp = letters[imin]
+            letters[imin] = letters[out]
+            letters[out] = temp
+
+        sorted_word = ""
+
+        for letter in letters:
+            sorted_word += letter
+
+        return sorted_word         # returns sorted word in quotations, ex.) "dabc" --> "abcd"
     
     @staticmethod  # provided to you
     def get_word_combination(word, combs=['']):
