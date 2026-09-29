@@ -170,7 +170,7 @@ class Dictionary:
 
     def spell_check(self, filename):
         try:
-            file = open(filename, "r")   # open the text file in read mode
+            file = open(filename, "r")   # opens the text file in read mode
         except FileNotFoundError:
             print(f"File {filename} does not exist!")
             return
@@ -207,9 +207,6 @@ class Dictionary:
                     anagram_list.append(dictionary_word)                     #appends to anagram list if previosu comments are true.
 
         return anagram_list
-                    
-                
-    
     
     @staticmethod  # provided to you
     def get_word_combination(word, combs=['']):
@@ -220,31 +217,29 @@ class Dictionary:
         combs = combs + list(map(lambda x: x+head, combs))
         return Dictionary.get_word_combination(tail, combs)
 
-    
-
     @staticmethod
-    def sort_word(word):                 #selection sort algorithm for anagrams
-        letters = list(word)
-
+    def sort_word(word):
+        """Return the letters in word sorted alphabetically."""
+        letters = list(word)   # convert string into a list so letters can be swapped
         n = len(letters)
 
-        for out in range(n - 1):
+        # Selection sort the letters
+        for out in range(n-1):
             imin = out
-
             for i in range(out + 1, n):
                 if letters[i] < letters[imin]:
                     imin = i
-
+            # Swap smallest letter into the current position
             temp = letters[imin]
             letters[imin] = letters[out]
             letters[out] = temp
-
+        # Build the sorted string one letter at a time
         sorted_word = ""
 
         for letter in letters:
-            sorted_word += letter
+            sorted_word = sorted_word + letter
 
-        return sorted_word         # returns sorted word in quotations, ex.) "dabc" --> "abcd"
+        return sorted_word
 
 
 
