@@ -19,6 +19,7 @@ class Dictionary:
         self.__words = []
         self.__index = -1   # stores the index found by a search; -1 means "not found"
         self.__steps = 0
+        self.__scores = []  # stores the scrabble score for each word
         random.seed(8)                 #same random sequence every time the program runs
         if filename is None:
             self.__name = "N/A"         #default name if there is no filename
@@ -50,9 +51,13 @@ class Dictionary:
     def insert(self, word):            #appends a new word into the word list
         self.__words.append(word)
 
-    def display(self):                 #iterates through the unsorted list of words and prints them each on their own line
-        for word in self.__words:
-            print(word)
+    def display(self, score = False):   #iterates through the unsorted list of words and prints them each on their own line
+        if score: 
+            for i in range(self.get_size()):
+                print(self.__words[i], self.__scores[i])
+        else:
+            for word in self.__words:
+                print(word)
 
     def get_random_list(self, n):
         random_words = []
@@ -241,13 +246,46 @@ class Dictionary:
 
         return sorted_word
 
+    def compute_score_scrabble(self):
+        self.__scores = []
+        for word in self.__words:
+            score = 0
 
+            for letter in word:
+                if letter in "eainrtlsu":
+                        score = score + 1
+                elif letter in "dg":
+                    score = score + 2
+                elif letter in "bcmp":
+                    score = score + 3
+                elif letter in "fhvwy":
+                    score = score + 4
+                elif letter == "k":
+                    score = score + 5
+                elif letter in "jx":
+                    score = score + 8
+                elif letter in "qz":
+                    score = score + 10
 
+            self.__scores.append(score)
 
+    def score_sort(self):
+        n = len(self.__scores)
 
-    
+        # insertion sort
+        for out in range(1, n):
+            temp_score = self.__scores[out]   # save score being inserted
+            temp_word = self.__words[out]     # save its matching word
+            i = out
 
-    
+            while i > 0 and self.__scores[i - 1] > temp_score:
+                self.__scores[i] = self.__scores[i - 1]
+                self.__words[i] = self.__words[i - 1]
+                i = i - 1
+
+            self.__scores[i] = temp_score
+            self.__words[i] = temp_word
+
 ########################################################################
 ########################################################################
 
