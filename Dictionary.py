@@ -212,6 +212,29 @@ class Dictionary:
                     anagram_list.append(dictionary_word)                     #appends to anagram list if previosu comments are true.
 
         return anagram_list
+
+    def crack_lock(self, lock):
+        result = Dictionary()         # new dictionary with possible words
+
+        c = 1
+        for options in lock:
+            c = c * len(options)
+
+        for attempt in range(6*c):
+            candidate = ""
+
+            for options in lock:
+                index = random.randint(0, len(options) - 1)
+                candidate = candidate + options[index]
+
+            if self.bsearch(candidate):
+
+                if not result.lsearch(candidate):
+                    result.insert(candidate)
+
+        return result
+        
+        
     
     @staticmethod  # provided to you
     def get_word_combination(word, combs=['']):
